@@ -9,14 +9,8 @@ export default class BoardInf extends Component {
         this.state = {
             content: "",
             items: [],
-            vms: [],
-            DataisLoaded: false,
-            vmsLoaded: false
+            DataisLoaded: false
         };
-    }
-
-    authVsphere() {
-
     }
 
     componentDidMount() {
@@ -47,19 +41,10 @@ export default class BoardInf extends Component {
                     DataisLoaded: true
                 });
             })
-
-
-        UserService.getAllVms().then(
-            response2 => {
-                this.setState(
-                    { vms: response2.data }
-                );
-            }
-        )
     }
 
     render() {
-        const { DataisLoaded, items, vms } = this.state;
+        const { DataisLoaded, items } = this.state;
         if (!DataisLoaded) return <div>
             <h1> Pleses wait some time.... </h1> </div>;
 
@@ -67,19 +52,25 @@ export default class BoardInf extends Component {
             <div className="container">
                 <header className="jumbotron">
                     <h3>{this.state.content}</h3>
-
-                    <select name="vmlist" size="10">
-                        {
-                            vms.map((vm) => (
-                                <option id={vm.name} class={vm.name}>{vm.name}</option>
-                            ))
-                        }
-                    </select>
-
-
-                </header >
+                </header>
+                <h1> Fetch data from an api in react </h1>
+                <tr>
+                    <td>Name</td>
+                    <td>full name</td>
+                    <td>Email</td>
+                </tr>
+                {
+                    items.map((item) => (
+                        <div>
+                            <tr>
+                                <td>{item.username}</td>
+                                <td>{item.name}</td>
+                                <td>{item.email}</td>
+                            </tr>
+                        </div>
+                    ))
+                }
             </div>
-
         );
     }
 }

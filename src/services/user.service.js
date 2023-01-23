@@ -16,8 +16,16 @@ class UserService {
         return axios.get(API_URL + 'ops', { headers: authHeader() });
     }
 
+    getDevOpsBoard() {
+        return axios.get(API_URL + 'devops', { headers: authHeader() });
+    }
+
     getInfBoard() {
         return axios.get(API_URL + 'inf', { headers: authHeader() });
+    }
+
+    getAllVms() {
+        return axios.get(API_URL + 'vms', { headers: authHeader() });
     }
 }
 
